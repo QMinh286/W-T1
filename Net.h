@@ -48,6 +48,7 @@
 #include <algorithm>
 #include <functional>
 #include "ReliableUDP.cpp"
+const int PacketSizeHack = PacketSize + 128;
 namespace net
 {
 	// platform independent wait for n seconds
