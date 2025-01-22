@@ -128,7 +128,8 @@ int main(int argc, char* argv[])
 
 	Mode mode = Server;
 	Address address;
-
+	/*I think if the argument is larger,we still just take 
+	the file name with the argument[2]==filename*/
 	if (argc >= 2)
 	{
 		int a, b, c, d;
@@ -168,7 +169,7 @@ int main(int argc, char* argv[])
 	float statsAccumulator = 0.0f;
 
 	FlowControl flowControl;
-
+	
 	while (true)
 	{
 		// update flow control
@@ -200,7 +201,11 @@ int main(int argc, char* argv[])
 		}
 
 		// send and receive packets
-
+		/*
+		I think we need to check that the file has been load before send the packet
+		and store a version of the file if there is any problem when sending the packet
+		we will have a backup plan for it 
+		*/
 		sendAccumulator += DeltaTime;
 
 		while (sendAccumulator > 1.0f / sendRate)
@@ -218,7 +223,11 @@ int main(int argc, char* argv[])
 			if (bytes_read == 0)
 				break;
 		}
-
+		/*
+		after this we need a function to verify the file which is
+		check the total size of original file and the received file 
+		to see if the file is complete
+		*/
 		// show packets that were acked this frame
 
 #ifdef SHOW_ACKS
